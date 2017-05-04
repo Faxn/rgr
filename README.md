@@ -13,6 +13,12 @@ instance roll a starting stat array under DnD rules with one commmand
 
 ## lists
 `<list>`                                If encountering a list on it's own it is assumed you want the sum of it's elements.
-`[highest|lowest] <scalar> of <list>`   Returns a list composed of onlt the highest of lowest elements of the given list.
+`[highest|lowest] <scalar> of <list>`   Returns a list composed of only the highest of lowest elements of the given list.
+`<list>k<scalar>`                       keeps the highest elements of given list.
 `<scalar> # <expression>`               Evaluates the expression given scalar times. Returns a List.
 
+
+# Other Notable Dice Interpreters
+
+* http://wiki.rolisteam.org/index.php/En:Dice
+* http://lmwcs.com/rptools/wiki/Dice_Expressions

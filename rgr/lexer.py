@@ -1,14 +1,17 @@
-
+import ply.lex as lex
 
 
 ########################################################################################## 
 #lexxer
 
-tokens = ('INTEGER',
-          'HIGHEST', 'LOWEST', 'OF')
-literals = ['+', '-', 'd', '(', ')', '#']
+tokens = (
+     'INTEGER',
+     'HIGHEST', 'LOWEST', 'OF'
+)
 
-# Magic toke for things the parser silently ignores.
+literals = ['+', '-', 'd', '(', ')', '#', 'k']
+
+# Magic token for things the parser silently ignores.
 t_ignore = " \t"
 
 #tokens
@@ -37,5 +40,5 @@ def t_error(t):
      raise SyntaxError("Illegal character '%s'" % t.value[0])
      t.lexer.skip(1)
      
-import ply.lex as lex
+
 lexer = lex.lex()

@@ -1,6 +1,3 @@
-
-
-
 import ply.yacc as yacc
 import sys,string,random, re
 try:
@@ -11,23 +8,19 @@ except SystemError:
     import lexer
 tokens = lexer.tokens
 
-
-
-
-
-
 ########################################################################
 #Parser
 
-precedence = (  #('left', 'VERSUS'),
-                #('left', 'SUM'),
-                ('left','+', '-'),
-                #('left', 'TIMES'),
-                ('left','d')
-                )
+precedence = (  
+    #('left', 'VERSUS'),
+    #('left', 'SUM'),
+    ('left','+', '-'),
+    #('left', 'TIMES'),
+    ('left','d', 'k')
+)
 
-#t is a token array, t[0] is what the statment evaluates to and t[1:] 
-#    are the operands matching the statment.
+# t is a token array, t[0] is what the statment evaluates to and t[1:] 
+# are the operands matching the statment.
 
 def p_statement_expr(t):
     '''statement : expression'''
@@ -65,6 +58,11 @@ def p_scalar_group(p):
 def p_high_filter(t):
     "list : HIGHEST scalar OF list"
     t[0] = Filter('highest', t[2], t[4])  
+
+def p_high_filter_short(t):
+    "list : list 'k' scalar"
+    t[0] = Filter('highest', t[3], t[1])  
+
 
 def p_low_filter(t):
     "list : LOWEST scalar OF list"

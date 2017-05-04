@@ -1,7 +1,7 @@
 import sys
 
-import lexer
-from parseRoll import parser
+from . import lexer
+from .parseRoll import parser
 
 if (sys.version_info.major < 3):
     print("RGR requires at least python 3.")
