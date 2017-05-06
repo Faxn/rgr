@@ -1,25 +1,23 @@
 import unittest
 
 import ply.lex as lex
-import lexer
+from rgr import lexer
 
-
-
-class SimpleTestCase(unittest.TestCase):
+class LexUnit(unittest.TestCase):
 
     def setUp(self):
         self.myLexer = lex.lex(module=lexer)
 
-    def testA(self):
+    def test_1p1(self):
         """Test case A. note that all test method names must begin with 'test.'"""
         self.myLexer.input("1+1")
         tok = self.myLexer.token()
         print(tok)
-        assert tok.type == 'NUMBER'
+        assert tok.type == 'INTEGER'
         tok = self.myLexer.token()
-        assert tok.type == 'PLUS'
+        assert tok.type == '+'
         tok = self.myLexer.token()
-        assert tok.type == 'NUMBER'
+        assert tok.type == 'INTEGER'
 
 if __name__ == "__main__":
     unittest.main() # run all tests
