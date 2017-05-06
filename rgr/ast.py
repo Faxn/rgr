@@ -60,7 +60,7 @@ class SumList(Expr):
         else:
             return t, '%s = %d'  % (hist, t)
         
-class Filter(Expr):
+class Keep(Expr):
     def __init__(self, f, count, l):
         self.type = "filter"
         self.f = f
@@ -94,10 +94,15 @@ class Repeat(Expr):
     def roll(self):
         count, chist = self.count.roll()
         result = []
-        history = "(%s = %d)# %s \n" % (chist, count, self.expression)
+        history = "(%s = %d)#\n" % (chist, count)
         while(count > 0):
             count -= 1
             resi, histi = self.expression.roll()
             history += "%s\n" % (histi)
             result.append(resi)
         return result, history
+
+class Filter(Expr):
+    def __init__(self, l, test):
+        self.l = l
+        self.test = test

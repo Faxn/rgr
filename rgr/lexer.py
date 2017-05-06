@@ -15,20 +15,10 @@ literals = ['+', '-', 'd', '(', ')', '#', 'k']
 t_ignore = " \t"
 
 #tokens
-
-
 t_HIGHEST = r'(highest)|(best)'
 t_LOWEST =  r'(lowest)|(worst)'
 t_OF = r'of'
-'''
-#dice
-t_DICE = r'd'
-t_ROLL = r'r'
 
-#other
-t_SUM = r'e'
-t_COMMA = r','
-'''
 
 def t_INTEGER(t):
     r'\d+'

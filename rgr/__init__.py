@@ -5,13 +5,14 @@ from .parseRoll import parser
 
 
 def roll(expression : str):
+    "Runs the dice expression provided and returns long form result"
     try:
         tree = parser.parse(expression)
         result, hist = tree.roll()
     except Exception as E:
         return str(E)
     
-    return hist
+    return result, hist, tree
 
 def compile(expression : str):
     tree = parser.parse(expression)
