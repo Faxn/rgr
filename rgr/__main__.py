@@ -1,4 +1,6 @@
 import sys
+import readline
+import traceback
 
 from . import lexer
 from .parseRoll import parser
@@ -22,7 +24,7 @@ try:
             print(result)
             print(history)
         except Exception as E:
-            print(str(E))
+            traceback.print_exc()
         buff=line
         
 except EOFError:

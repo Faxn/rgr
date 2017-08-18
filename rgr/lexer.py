@@ -6,10 +6,13 @@ import ply.lex as lex
 
 tokens = (
      'INTEGER',
-     'HIGHEST', 'LOWEST', 'OF'
+     'HIGHEST',
+     'LOWEST',
+     'OF',
+     'GTE'
 )
 
-literals = ['+', '-', 'd', '(', ')', '#', 'k']
+literals = ['+', '-', 'd', '(', ')', '#', 'k', ',']
 
 # Magic token for things the parser silently ignores.
 t_ignore = " \t"
@@ -18,6 +21,7 @@ t_ignore = " \t"
 t_HIGHEST = r'(highest)|(best)'
 t_LOWEST =  r'(lowest)|(worst)'
 t_OF = r'of'
+t_GTE = r'(>=)|(=>)|v|(vs)'
 
 
 def t_INTEGER(t):

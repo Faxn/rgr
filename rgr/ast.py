@@ -1,7 +1,20 @@
 
 import random
 
-class Expr: pass
+class Statment:
+    def __init__(self, expr):
+        self.expr = expr
+    def roll(self):
+        result, hist = self.expr.roll()
+        if(type(result) == list):
+            print("\t\#\t"+str(result))
+            rsum = sum(result)
+            result = (rsum, result)
+            hist = 'Σ(%s) = Σ%r = %d' % (hist, result, rsum)
+        return result, hist
+
+class Expr:
+    pass
 
 class BinOp(Expr):
     def __init__(self,left,op,right):
@@ -103,6 +116,28 @@ class Repeat(Expr):
         return result, history
 
 class Filter(Expr):
-    def __init__(self, l, test):
+    tests = {
+        'gte': (lambda a,b: a >= b)
+    }
+    symbol = {
+        'gte' : '>='
+    }
+    def __init__(self, l, test, value):
         self.l = l
         self.test = test
+        self.value = value
+    def roll(self):
+        l, lhist = self.l.roll()
+        v, vhist = self.value.roll()
+        result = []
+        history = "(%s) %s %d = " % (lhist, self.symbol[self.test], vhist)
+        for e in l:
+            if self.tests[self.test](e, v):
+                history += "**%d**, " % e
+                result.append(e)
+            else:
+                history += "%d, " % e
+        history += " = %s" % str(result)
+        return result, history
+      
+       
