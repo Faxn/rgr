@@ -12,7 +12,7 @@ tokens = lexer.tokens
 #Parser
 
 precedence = (  
-    ('left', 'EXPRESS', 'ISUM'),
+    ('left', 'EXPRESS', 'ISUM', 'c'),
     ('left', '#', 'GTE'),
     #('left', 'SUM'),
     ('left','+', '-'),
@@ -81,6 +81,10 @@ def p_filter(t):
 def p_repeat(t):
     "list : scalar '#' expression"
     t[0] = Repeat(t[1], t[3])
+
+def p_count(t):
+    "scalar : 'c' list"
+    t[0] = Count(t[2])
 
 def p_implicit_sum(t):
     "scalar : list %prec ISUM"

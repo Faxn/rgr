@@ -12,7 +12,7 @@ tokens = (
      'GTE'
 )
 
-literals = ['+', '-', 'd', '(', ')', '#', 'k', ',']
+literals = ['+', '-', 'd', '(', ')', '#', 'k', ',', 'c']
 
 # Magic token for things the parser silently ignores.
 t_ignore = " \t"

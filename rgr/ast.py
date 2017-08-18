@@ -140,4 +140,11 @@ class Filter(Expr):
         history += " = %s" % str(result)
         return result, history
       
-       
+class Count(Expr):
+    def __init__(self, l):
+        self.l = l
+    def roll(self):
+        l, lhist = self.l.roll()
+        result = len(l)
+        hist = "c(%s) = %d" % (lhist, result)
+        return result, hist
