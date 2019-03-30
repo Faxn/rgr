@@ -24,5 +24,6 @@ try:
     def setup(bot):
         bot.add_cog(RGR(bot))
 except ModuleNotFoundError as e:
-    print(str(e))
+    def setup(bot):
+        raise Exception(str(e), e)
     pass
