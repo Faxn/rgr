@@ -17,3 +17,12 @@ def roll(expression : str):
 def compile(expression : str):
     tree = parser.parse(expression)
     return tree
+
+try:
+    from .rgrcog import RGR
+
+    def setup(bot):
+        bot.add_cog(RGR(bot))
+except ModuleNotFoundError as e:
+    print(str(e))
+    pass

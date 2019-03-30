@@ -3,12 +3,13 @@ import json
 import logging
 import os
 
-from discord.ext import commands
+from redbot.core import commands
+from redbot.core imort Config
 import rgr
 
 logger = logging.getLogger(__name__)
 
-class RGR:
+class RGR (commands.Cog):
         
     def __init__(self, bot):
         self.bot = bot
@@ -43,10 +44,10 @@ class RGR:
             expr = " ".join(roll)
             logger.debug(expr)
             _, response, _ = rgr.roll(expr)
-            await self.bot.say("{} rolls {}".format(ctx.message.author, response))
+            await ctx.send("{} rolls {}".format(ctx.message.author, response))
         except Exception as err:
             logger.warn(err)
-            await self.bot.say("Could not complete {}'s roll:\n{}".format(ctx.message.author, err))
+            await ctx.send("Could not complete {}'s roll:\n{}".format(ctx.message.author, err))
     
     @commands.command(aliases=["rollChannel", "autoRoll"], pass_context=True, rest_is_raw=True, description='Sets the current channel roll status')
     @asyncio.coroutine
